@@ -5,6 +5,18 @@
 #define BUFFER_SIZE 65536
 #define BRACKET_STACK_SIZE 1024
 
+/*
+ *  >  Moves the pointer to the right
+ *  <  Moves the pointer to the left
+ *  +  Increments the value at the pointer
+ *  -  Decrements the value at the pointer
+ *  .  Prints the ASCII value at the pointer
+ *  ,  Reads from stdin and writes the value
+ *  [  Begins a while loop
+ *  ]  Loops if the value under the pointer is nonzero
+ */
+
+
 int main(int argc, char *argv[])
 {
 	if (argc <= 1)
@@ -55,8 +67,6 @@ int main(int argc, char *argv[])
 			case '.': putchar(*p);
 				break;
 			case ',': *p = getchar();
-				/* Exit successfully if EOF is reached */
-				if (!*p) exit(0);
 				break;
 			case ']':
 				b--;
@@ -72,16 +82,4 @@ int main(int argc, char *argv[])
 
 	return 0;
 }
-
-
-/*
- *  >  Moves the pointer to the right
- *  <  Moves the pointer to the left
- *  +  Increments the value at the pointer
- *  -  Decrements the value at the pointer
- *  .  Prints the ASCII value at the pointer
- *  ,  Reads from stdin and writes the value
- *  [  Begins a while loop
- *  ]  Loops if the value under the pointer is nonzero
- */
 
