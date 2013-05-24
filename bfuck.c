@@ -48,7 +48,8 @@ int main(int argc, char *argv[])
 	char *op = source;
 	char *data = source + source_size;
 	char *p = data;
-	char **b = (char **) calloc(BRACKET_STACK_SIZE, sizeof(char *));
+	char **bracket_stack = (char **) calloc(BRACKET_STACK_SIZE, sizeof(char *));
+	char **b = bracket_stack;
 	
 	/* Loop through each operation */
 	
@@ -68,17 +69,14 @@ int main(int argc, char *argv[])
 				break;
 			case ',': *p = getchar();
 				break;
-			case ']':
-				b--;
-				if (*p) op = *b;
-				else break;
+			case ']': if (*p) op = *(b - 1);
+				break;
 			case '[': *(b++) = op;
 				break;
 		}
 	} while (++op < data);
 
 	free(source);
-	free(b);
 
 	return 0;
 }
