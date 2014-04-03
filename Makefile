@@ -1,12 +1,10 @@
 
+CFLAGS = -O3 -Wall -ansi
+
 all: bfuck
 
 bfuck: bfuck.o
-	gcc -o bfuck bfuck.o
-
-bfuck.o: bfuck.c
-	gcc -c bfuck.c
+	$(LINK.c) -o bfuck bfuck.o
 
 clean:
-	rm *.o bfuck
-
+	rm -f *.o bfuck
